@@ -64,15 +64,20 @@
           <td>This token will be passed to the download URL. It can be used to authenticate requests for private models.</td>
           <td>No</td>
         </tr>
+        <tr>
+          <td>data-ap-protected</td>
+          <td>Wheter the design can be downloaded by user or not. Present if desired, omit if no protection required.</td>
+          <td>No</td>
+        </tr>
       </table>
       <p>
         An example of such usage is:
       </p>
-      <pre>&lt;button class="astroprint-import" data-ap-download-url="<i>file_url</i>" data-ap-name="test.stl"&gt; Print with AstroPrint &lt;/button&gt;</pre>
+      <pre>&lt;button class="astroprint-import" data-ap-download-url="<i>file_url</i>" data-ap-name="test.stl" data-ap-protected="1"&gt; Print with AstroPrint &lt;/button&gt;</pre>
       <p>
         Click below to see a demo of such usage
       </p>
-      <button class="astroprint-import btn btn-success" data-ap-download-url="https://www.thingiverse.com/download:2101202" data-ap-name="test.stl"> Print with AstroPrint </button>
+      <button class="astroprint-import btn btn-success" data-ap-download-url="https://www.thingiverse.com/download:2101202" data-ap-name="test.stl" data-ap-protected="0"> Print with AstroPrint </button>
 
       <h3>Option 2: Calling the Javascript API with a download URL</h3>
       <p>
@@ -100,6 +105,11 @@
           <td>This token will be passed to the download URL. It can be used to authenticate requests for private models.</td>
           <td>No</td>
         </tr>
+        <tr>
+          <td>protected</td>
+          <td>Wheter the design can be downloaded by user or not.</td>
+          <td>No</td>
+        </tr>
       </table>
       <p>
         An example of this is as follows. A button that calls the API on the click event.
@@ -108,7 +118,7 @@
 &lt;button onclick="import()"&gt; Print with AstroPrint &lt;/button&gt;
 &lt;script&gt;
   function import() {
-    astroprint.importDesign("<i>file_url</i>", "test.stl");
+    astroprint.importDesign("<i>file_url</i>", "test.stl", null, true);
   }
 &lt;/script&gt;
 </pre>
@@ -144,7 +154,11 @@
           <td>This is the name that will be used to save the file in the user's account. It must have the STL or ZIP extensions.</td>
           <td>Yes</td>
         </tr>
-
+        <tr>
+          <td>protected</td>
+          <td>Wheter the design can be downloaded by user or not.</td>
+          <td>No</td>
+        </tr>
       </table>
       <p>
         An example of this is as follows. A button that calls the API on the click event.
@@ -154,7 +168,7 @@
 &lt;script&gt;
   function import() {
     var blob = getDataAsBlob(); //This function is implemented by you to retrieve the STL data as blob
-    astroprint.importDesignByBlob(blob, "application/sla", "test.stl");
+    astroprint.importDesignByBlob(blob, "application/sla", "test.stl", false);
   }
 &lt;/script&gt;
 </pre>
